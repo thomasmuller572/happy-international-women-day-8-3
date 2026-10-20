@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày Quốc Tế Phụ Nữ 8/3 🌷</title>
+    <!-- Nhập Font chữ lãng mạn từ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hiệu ứng hoa rơi nền */
+        .petal {
+            position: absolute;
+            background: #ffb7b2;
+            border-radius: 15px 0px 15px 0px;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: animatePetal 6s linear infinite;
+        }
+
+        @keyframes animatePetal {
+            0% {
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                top: 110%;
+                transform: translateX(100px) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Khung Thiệp Trung Tâm */
+        .card-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(238, 156, 167, 0.4);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: zoomIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .icon-header {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d81b60;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        p.main-text {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Nút Tương Tác */
+        .btn-open {
+            background: linear-gradient(45deg, #ff4081, #d81b60);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(216, 27, 96, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-open:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.6);
+        }
+
+        /* Nội dung lời chúc ẩn bí mật */
+        .secret-box {
+            display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #f8bbd0;
+            color: #880e4f;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Khung thiệp chúc mừng -->
+    <div class="card-container">
+        <div class="icon-header">💐</div>
+        <h1>Happy Women's Day!</h1>
+        <p class="main-text">
+            Chúc một nửa thế giới luôn xinh đẹp, tự tin, tràn ngập niềm vui và nhận được thật nhiều tình yêu thương trong ngày 8/3!
+        </p>
+        
+        <button class="btn-open" onclick="revealWish()">Mở món quà bí mật 🎁</button>
+
+        <!-- Lời chúc ẩn sẽ hiện ra khi bấm nút -->
+        <div id="secretMessage" class="secret-box">
+            ✨ "Cảm ơn vì đã luôn mang lại sự dịu dàng, ấm áp và nguồn năng lượng tích cực tuyệt vời cho thế giới này. Chúc bạn luôn rạng rỡ như những đóa hoa tươi thắm nhất!" 🌹✨
+        </div>
+    </div>
+
+    <script>
+        // Hiệu ứng tạo cánh hoa rơi tự động
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            // Kích thước ngẫu nhiên
+            const size = Math.random() * 12 + 10 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+
+            // Vị trí xuất phát ngẫu nhiên trên màn hình
+            petal.style.left = Math.random() * 100 + 'vw';
+
+            // Thời gian rơi ngẫu nhiên
+            const duration = Math.random() * 3 + 4 + 's';
+            petal.style.animationDuration = duration;
+
+            document.body.appendChild(petal);
+
+            // Tự động xóa cánh hoa khi rơi hết màn hình
+            setTimeout(() => {
+                petal.remove();
+            }, parseFloat(duration) * 1000);
+        }
+
+        // Tạo cánh hoa liên tục mỗi 250ms
+        setInterval(createPetal, 250);
+
+        // Hàm bật mở lời chúc ẩn
+        function revealWish() {
+            const secretBox = document.getElementById('secretMessage');
+            secretBox.style.display = 'block';
+
+            // Ẩn nút sau khi đã mở
+            event.target.style.display = 'none';
+
+            // Tạo hiệu ứng tung hoa nhiều hơn khi mở quà
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createPetal, i * 40);
+            }
+        }
+    </script>
+</body>
+</html>
